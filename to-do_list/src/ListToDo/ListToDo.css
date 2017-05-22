@@ -1,0 +1,22 @@
+.listToDo {
+    width: 70%;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #daccff;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: block;
+}
+
+.listToDo__count {
+    margin: 10px 0 0 0;
+    display: block;
+}
+
+p {
+    margin: 0 0 5px;
+}
+
+.none {
+    display: none !important;
+}

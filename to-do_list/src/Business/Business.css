@@ -1,0 +1,70 @@
+input {
+    margin: 0 0 5px;
+}
+
+.business {
+    background-color: #FFF;
+    border: 1px solid rgba(0, 89, 181, 0.82);
+    width: 600px;
+    margin: 5px auto 5px;
+    box-shadow: 2px 2px 5px -1px rgb(0, 81, 202);
+    padding: 3px 5px;
+}
+
+.business__title, .business__description, .business__importance, .business__deadline {
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 5px;
+    border: 0;
+    text-align: center;
+    width: 96%;
+    font-size: 16px;
+    outline: 0 !important;
+}
+
+.clicked {
+    color: rgba(149,24,254,0.97);
+}
+
+.business__title {
+    color: #007DDC;
+}
+
+.business__description {
+    font-weight: bold;
+    resize: none;
+}
+
+.business__importance {
+    text-align: right;
+}
+
+.btn {
+    width: 5%;
+    margin: 0 5px 0 0;
+    background-color: #61DAFB;
+}
+
+p {
+    text-decoration: none;
+}
+
+.red {
+    color: rgba(254,7,12,0.97);
+}
+
+.yellow {
+    color: #d7c105;
+}
+
+.green {
+    color: #0a6a00;
+}
+
+.completed {
+    background-color: #abffa0;
+}
+
+.past_due {
+    background-color: #ffad94;
+}

@@ -1,0 +1,36 @@
+.App-intro {
+    font-size: large;
+    min-height: 500px;
+    position: relative;
+}
+
+.btn_search {
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 5px;
+    width: 10%;
+    border: 1px solid rgba(0, 89, 181, 0.82);
+    box-sizing: content-box;
+    color: #FFF;
+    background: #007DDC;
+}
+
+.search_all {
+    position: absolute;
+    top: 20px;
+}
+
+.search_normal {
+    position: absolute;
+    top: 50px;
+}
+
+.search_important {
+    position: absolute;
+    top: 80px;
+}
+
+.search_very_important {
+    position: absolute;
+    top: 110px;
+}

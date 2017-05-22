@@ -1,0 +1,55 @@
+.add {
+    margin: 0;
+    width: 30%;
+    height: 100%;
+    border: 3px dashed rgba(0, 89, 181, 0.82);
+    padding: 5px;
+    box-sizing: border-box;
+    display: block;
+    float: right;
+    background-color: #61DAFB;
+}
+
+.add__title, .add__description, .add__importance, .add__deadline, .add__btn, .add__checkrule {
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 5px;
+    width: 96%;
+    border: 1px solid rgba(0, 89, 181, 0.82);
+}
+
+p {
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+.add__description {
+    resize: none;
+}
+
+.add__importance {
+    border: none;
+    text-align: left;
+    font-size: 14px;
+}
+
+.add__deadline {
+    border: none;
+}
+
+.add__checkrule {
+    border: none;
+    font-size: 12px;
+}
+
+.add__btn {
+    box-sizing: content-box;
+    color: #FFF;
+    text-transform: uppercase;
+    background: #007DDC;
+}
+
+.add__btn:disabled {
+    background: #CCC;
+    color: #999;
+}
