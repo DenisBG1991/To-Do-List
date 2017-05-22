@@ -52,14 +52,20 @@ class Intro extends Component {
         let self = this;
         eventEmitter.addListener('Business.add', item => {
             let nextBusinesses = item.concat(self.state.businesses);
-            self.setState({businesses: nextBusinesses});
+            self.setState({
+                businesses: nextBusinesses,
+                searchList: nextBusinesses,
+            });
         });
         eventEmitter.addListener('Business.update', item => {
             let updateBusiness = self.state.businesses.map(val => {
                 if (val === item[1]) val = item[0];
                 return val;
             });
-            self.setState({businesses: updateBusiness});
+            self.setState({
+                businesses: updateBusiness,
+                searchList: updateBusiness,
+            });
         });
         eventEmitter.addListener('Business.delete', item => {
             let indexDel,
@@ -69,15 +75,12 @@ class Intro extends Component {
                 if (val === item) indexDel = index;
             });
             businessAfterDelete.splice(indexDel,1);
-            self.setState({businesses: businessAfterDelete});
+            self.setState({
+                businesses: businessAfterDelete,
+                searchList: businessAfterDelete,
+            });
         });
     }
-
-    componentWillReceiveProps (newProps){
-        this.setState({
-            searchON: false
-        });
-    };
 
     componentDidUpdate  (){
         let newLocalStorageString = '',
@@ -101,14 +104,19 @@ class Intro extends Component {
         let search = [];
 
         if (importance === 'All') {
-            this.setState({searchList: this.state.businesses});
+            this.setState({
+                searchList: this.state.businesses,
+                searchON: false
+            });
         } else {
             this.state.businesses.forEach(val => {
                 if (val.importance === importance) search.push(val);
             });
-            this.setState({searchList: search});
+            this.setState({
+                searchList: search,
+                searchON: true
+            });
         }
-        this.setState({searchON: true});
     };
 
     render(){
