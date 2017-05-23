@@ -44,43 +44,70 @@ class Intro extends Component {
         this.state = {
             businesses: to_do_list,
             searchList: [],
-            searchON: false
+            searchON: ''
         };
     };
 
     componentDidMount() {
-        let self = this;
+
         eventEmitter.addListener('Business.add', item => {
-            let nextBusinesses = item.concat(self.state.businesses);
-            self.setState({
-                businesses: nextBusinesses,
-                searchList: nextBusinesses,
+            let nextBusinesses = item.concat(this.state.businesses),
+                nextSearchList = this.state.searchList;
+
+            if (this.state.searchON !== '' &&
+                this.state.searchON === item[0].importance)
+                nextSearchList = item.concat(this.state.searchList);
+
+            this.setState({
+                searchList: nextSearchList,
+                businesses: nextBusinesses
             });
         });
+
         eventEmitter.addListener('Business.update', item => {
-            let updateBusiness = self.state.businesses.map(val => {
+            let updateBusiness = this.state.businesses.map(val => {
                 if (val === item[1]) val = item[0];
                 return val;
-            });
-            self.setState({
-                businesses: updateBusiness,
-                searchList: updateBusiness,
+            }),updateSearchList;
+
+            if (this.state.searchON !== ''){
+                updateSearchList = this.state.searchList.map(val => {
+                    if (val === item[1]) val = item[0];
+                    return val;
+                });
+            }
+
+            this.setState({
+                searchList: updateSearchList,
+                businesses: updateBusiness
             });
         });
+
         eventEmitter.addListener('Business.delete', item => {
             let indexDel,
-                businessAfterDelete = this.state.businesses;
+                indexDelOnSearchList,
+                businessAfterDelete = this.state.businesses,
+                searchListAfterDelete = this.state.searchList;
 
-            self.state.businesses.forEach((val, index) => {
+            this.state.businesses.forEach((val, index) => {
                 if (val === item) indexDel = index;
             });
             businessAfterDelete.splice(indexDel,1);
-            self.setState({
-                businesses: businessAfterDelete,
-                searchList: businessAfterDelete,
+
+            if (this.state.searchON !== ''){
+                this.state.searchList.forEach((val, index) => {
+                    if (val === item) indexDelOnSearchList = index;
+                });
+                searchListAfterDelete.splice(indexDelOnSearchList,1);
+            }
+
+            this.setState({
+                searchList: searchListAfterDelete,
+                businesses: businessAfterDelete
             });
         });
-    }
+
+    };
 
     componentDidUpdate  (){
         let newLocalStorageString = '',
@@ -106,7 +133,7 @@ class Intro extends Component {
         if (importance === 'All') {
             this.setState({
                 searchList: this.state.businesses,
-                searchON: false
+                searchON: ''
             });
         } else {
             this.state.businesses.forEach(val => {
@@ -114,7 +141,7 @@ class Intro extends Component {
             });
             this.setState({
                 searchList: search,
-                searchON: true
+                searchON: importance
             });
         }
     };
@@ -122,7 +149,7 @@ class Intro extends Component {
     render(){
 
         if (this.state.searchList.length === 0) {
-            if (this.state.searchON){
+            if (this.state.searchON !== ''){
                 businessesList = this.state.searchList;
             } else {
                 businessesList = this.state.businesses;

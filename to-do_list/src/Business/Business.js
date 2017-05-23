@@ -40,7 +40,6 @@ class Business extends Component {
     onBtnEdit(e){
         e.preventDefault();
         if (!this.state.isDisabled) {
-            //this.setState({isDisabled: !this.state.isDisabled});
             let item = {
                 title: this.state.titleValue,
                 description: this.state.descriptionValue,
